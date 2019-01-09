@@ -8,7 +8,7 @@
   - [ ] There is a running timer for the duration of the lap and player scores will be saved on leaderboards if in top 10.
 
 ### Wireframes
-![wireframe][https://imgur.com/a/DyOomnz]
+![wireframe](https://i.imgur.com/ngJGeIu.png)
 
 ### Timeline
   **Day 1:**
