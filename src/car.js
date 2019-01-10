@@ -2,7 +2,7 @@ class Car {
   constructor (x, y) {
     this.x = x;
     this.y = y;
-    this.rad = 0
+    this.rad = Math.PI
   }
 
   draw() {
@@ -19,15 +19,6 @@ class Car {
       c.fillStyle = 'white';
       c.fillRect(this.x - 25, this.y - 25, 50, 50)
     }
-  }
-
-  rotate() {
-    const c = canvas.getContext('2d');
-    c.save()
-    c.clearRect(0, 0, c.width, c.height);
-    c.translate(this.x + 50 / 2, this.y + 50 / 2);
-    c.rotate((Math.PI / 180) * 25);
-    c.restore();
   }
 
   update(xShift, yShift) {

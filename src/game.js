@@ -8,7 +8,7 @@ class Game {
     canvas.width = 800;
     canvas.height = 600;
     this.viewportWidth = canvas.width
-    this.viewportHeight = canvas.height
+    this.viewportHeight = 0
     this.car = new Car(100, 100, 50, 50);
     this.moveCar.bind(this);
   }
@@ -30,11 +30,12 @@ class Game {
     c.fillStyle = 'white';
     this.car.draw();
     c.fillRect(600, 600, 50, 50);
+    c.fillRect(200, -200, 50, 50);
   }
 
   update() {
     const c = canvas.getContext('2d');
-    c.clearRect(0, 0, this.viewportWidth, this.viewportHeight);
+    c.clearRect(0, this.viewportHeight, this.viewportWidth, 600);
   }
 
   loadListeners() {
@@ -44,17 +45,23 @@ class Game {
   moveCar(e) {
     const c = canvas.getContext('2d');
     if (e.key === 'w') {
-      this.viewportHeight -= 50
-      c.translate(0, 50)
-      this.car.update(0, 50);
+      let x = Math.cos(this.car.rad) * 17
+      let y = Math.sin(this.car.rad) * 17
+      this.viewportHeight -= y;
+      this.viewportWidth -= x;
+      c.translate(x, y)
+      this.car.update(x, y);
     } else if (e.key === 'a') {
-      this.car.rad += 0.12
-    } else if (e.key === 's') {
-      this.viewportHeight += 50
-      c.translate(0, -50)
-      this.car.update(0, -50);
-    } else if (e.key === 'd') {
       this.car.rad -= 0.12
+    } else if (e.key === 's') {
+      let x = Math.cos(this.car.rad) * 17 * - 1
+      let y = Math.sin(this.car.rad) * 17 * - 1
+      this.viewportHeight += y
+      this.viewportWidth += x
+      c.translate(x, y)
+      this.car.update(x, y);
+    } else if (e.key === 'd') {
+      this.car.rad += 0.12
     }
   }
 
