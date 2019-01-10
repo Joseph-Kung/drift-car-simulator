@@ -1,0 +1,25 @@
+{
+  "name": "time-attack-racer",
+  "version": "1.0.0",
+  "description": "Time Attack Racer is a top down 2D racing game. Players will be able to select different tracks and compete for the best time on the leaderboards.",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joseph-Kung/time-attack-racer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joseph-Kung/time-attack-racer/issues"
+  },
+  "homepage": "https://github.com/Joseph-Kung/time-attack-racer#readme",
+  "devDependencies": {
+    "webpack": "^4.28.1",
+    "webpack-cli": "^3.2.1"
+  }
+}
