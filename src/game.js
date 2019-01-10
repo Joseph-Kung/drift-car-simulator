@@ -5,6 +5,10 @@ import Track from './track.js';
 class Game {
   constructor (canvas) {
     this.canvas = canvas;
+    canvas.width = 800;
+    canvas.height = 600;
+    this.viewportWidth = canvas.width
+    this.viewportHeight = canvas.height
     this.car = new Car(100, 100, 50, 50);
     this.moveCar.bind(this);
   }
@@ -30,8 +34,7 @@ class Game {
 
   update() {
     const c = canvas.getContext('2d');
-    c.setTransform(1, 0, 0, 1, this.x, this.y);
-    c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    c.clearRect(0, 0, this.viewportWidth, this.viewportHeight);
   }
 
   loadListeners() {
@@ -41,19 +44,17 @@ class Game {
   moveCar(e) {
     const c = canvas.getContext('2d');
     if (e.key === 'w') {
+      this.viewportHeight -= 50
       c.translate(0, 50)
       this.car.update(0, 50);
     } else if (e.key === 'a') {
-      // c.translate(50, 0)
-      // this.car.update(50, 0);
-      this.car.rad += 0.17
+      this.car.rad += 0.12
     } else if (e.key === 's') {
+      this.viewportHeight += 50
       c.translate(0, -50)
       this.car.update(0, -50);
     } else if (e.key === 'd') {
-      // c.translate(-50, 0)
-      // this.car.update(-50, 0);
-      this.car.rad -= 0.17
+      this.car.rad -= 0.12
     }
   }
 
