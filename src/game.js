@@ -1,9 +1,12 @@
 import Car from './car.js';
 import Background from './background.js';
+import Track from './track.js';
 
 class Game {
   constructor (canvas) {
     this.canvas = canvas;
+    this.car = new Car(100, 175)
+    this.moveCar.bind(this);
   }
 
   run () {
@@ -19,38 +22,38 @@ class Game {
 
   draw() {
     const c = canvas.getContext('2d');
+    const track = new Track(100, 100);
     c.fillStyle = 'white';
-    c.fillRect(100, 100, 50, 50)
+    this.car.draw();
     c.fillRect(600, 600, 50, 50)
   }
 
   update() {
     const c = canvas.getContext('2d');
-    c.clearRect(0, 0, 1200, 1000)
+    c.clearRect(-100, -100, 1200, 1000);
   }
 
   loadListeners() {
-    window.addEventListener("keydown", moveCar, false);
+    window.addEventListener("keydown", this.moveCar.bind(this), false);
+  }
+
+  moveCar(e) {
+    const c = canvas.getContext('2d');
+    if (e.key === 'w') {
+      c.translate(0, 50)
+      this.car.update(0, 50);
+    } else if (e.key === 'a') {
+      c.translate(50, 0)
+      this.car.update(50, 0);
+    } else if (e.key === 's') {
+      c.translate(0, -50)
+      this.car.update(0, -50);
+    } else if (e.key === 'd') {
+      c.translate(-50, 0)
+      this.car.update(-50, 0);
+    }
   }
 }
 
-
-const moveCar = e => {
-  console.log(e)
-  const c = canvas.getContext('2d');
-  if(e.key === 'w') {
-      console.log('w')
-      c.translate(0, 100)
-  } else if (e.key === 'a') {
-      console.log('a')
-      c.translate(100, 0)
-  } else if (e.key === 's') {
-    console.log('s')
-    c.translate(0, -100)
-  } else if (e.key === 'd') {
-    console.log('d')
-    c.translate(-100, 0)
-  }
-}
 
 export default Game;
