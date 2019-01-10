@@ -5,10 +5,10 @@ import Track from './track.js';
 class Game {
   constructor (canvas) {
     this.canvas = canvas;
-    this.car = new Car(100, 175)
+    this.car = new Car(100, 100, 50, 50);
     this.moveCar.bind(this);
   }
-
+  
   run () {
     const background = new Background(this.canvas)
     background.render();
@@ -16,21 +16,22 @@ class Game {
     setInterval(() => {
       this.update();
       this.draw();
-    }, 60)
+    }, 1000/60)
    
   }
 
-  draw() {
+  draw(rad) {
     const c = canvas.getContext('2d');
     const track = new Track(100, 100);
     c.fillStyle = 'white';
     this.car.draw();
-    c.fillRect(600, 600, 50, 50)
+    c.fillRect(600, 600, 50, 50);
   }
 
   update() {
     const c = canvas.getContext('2d');
-    c.clearRect(-100, -100, window.innerWidth, window.innerHeight);
+    c.setTransform(1, 0, 0, 1, this.x, this.y);
+    c.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   loadListeners() {
@@ -45,16 +46,17 @@ class Game {
     } else if (e.key === 'a') {
       // c.translate(50, 0)
       // this.car.update(50, 0);
-      this.car.rotate()
+      this.car.rad += 0.17
     } else if (e.key === 's') {
       c.translate(0, -50)
       this.car.update(0, -50);
     } else if (e.key === 'd') {
       // c.translate(-50, 0)
       // this.car.update(-50, 0);
-      this.car.rotate();
+      this.car.rad -= 0.17
     }
   }
+
 }
 
 
