@@ -13,8 +13,15 @@ class Car {
 
   draw() {
     const c  = canvas.getContext('2d');
+
+    const friction = 0.95;
+    this.velX *= friction;
+    this.velY *= friction;
+
     c.translate(this.velX, this.velY)
     this.update();
+    this.viewportHeight -= (this.velY + this.accY);
+    this.viewportWidth -= (this.velX + this.accX);
     if (this.rad) {
       c.save()
       c.fillStyle = 'white';
@@ -28,17 +35,15 @@ class Car {
     }
   }
 
-  update(x, y) {
+  update() {
     const c = canvas.getContext('2d');
-
     this.velX += this.accX;
     this.velY += this.accY;
-    
+    this.viewportHeight -= (this.velY + this.accY);
+    this.viewportWidth -= (this.velX) + this.accX;
+
     this.x -= (this.velX);
     this.y -= (this.velY);
-
-    this.game.viewportHeight += this.velY + this.accY;
-    this.game.viewportWidth += this.velX + this.accY;
   }
 }
 

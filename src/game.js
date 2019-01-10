@@ -33,12 +33,12 @@ class Game {
     this.moveCar();
     this.car.draw();
     c.fillRect(600, 600, 50, 50);
-    c.fillRect(200, -200, 50, 50);
+    c.fillRect(0, 0, 50, 50);
   }
 
   update() {
     const c = canvas.getContext('2d');
-    c.clearRect(0 - this.viewportWidth, 0 - this.viewportHeight, canvas.width, canvas.height);
+    c.clearRect(this.viewportWidth, this.viewportHeight, 5000, 5000);
     c.translate(this.car.velX + this.car.accX, this.car.velY + this.car.accY);
   }
 
@@ -55,12 +55,10 @@ class Game {
   moveCar() {
     const c = canvas.getContext('2d');
     if (this.keys['w']) {
-      let ax = Math.cos(this.car.rad) * 0.04;
-      let ay = Math.sin(this.car.rad) * 0.04;
-      console.log(ax);
-      console.log(ay);
-      this.viewportHeight += ay;
-      this.viewportWidth += ax;
+      let ax = Math.cos(this.car.rad) * 0.06;
+      let ay = Math.sin(this.car.rad) * 0.06;
+      this.viewportHeight -= (this.car.velY + this.car.accY);
+      this.viewportWidth -= (this.car.velX + this.car.accX);
       this.car.accX = ax;
       this.car.accY = ay;
     } else {
@@ -76,17 +74,11 @@ class Game {
     if (this.keys['s']) {
       let ax = Math.cos(this.car.rad) * 0.005 * - 1
       let ay = Math.sin(this.car.rad) * 0.005 * - 1
-      this.viewportHeight -= ay
-      this.viewportWidth -= ax
+      this.viewportHeight -= (this.car.velY + this.car.accY);
+      this.viewportWidth -= (this.car.velX + this.car.accX);
       this.car.accX = ax;
       this.car.accY = ay;
-      this.car.update(ax, ay);
     } 
-  }
-
-  moveScreen() {
-    const c = canvas.getContext('2d');
-    
   }
 }
 
