@@ -10,9 +10,14 @@ class Car {
     c.fillRect(this.x, this.y, 50, 50)
   }
 
+  rotate() {
+    const c = canvas.getContext('2d');
+    c.rotate(20 * Math.PI / 180);
+  }
+
   update(xShift, yShift) {
-    this.x += xShift;
-    this.y += yShift;
+    this.x -= xShift;
+    this.y -= yShift;
   }
 }
 

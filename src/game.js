@@ -30,7 +30,7 @@ class Game {
 
   update() {
     const c = canvas.getContext('2d');
-    c.clearRect(-100, -100, 1200, 1000);
+    c.clearRect(-100, -100, window.innerWidth, window.innerHeight);
   }
 
   loadListeners() {
@@ -43,14 +43,16 @@ class Game {
       c.translate(0, 50)
       this.car.update(0, 50);
     } else if (e.key === 'a') {
-      c.translate(50, 0)
-      this.car.update(50, 0);
+      // c.translate(50, 0)
+      // this.car.update(50, 0);
+      this.car.rotate()
     } else if (e.key === 's') {
       c.translate(0, -50)
       this.car.update(0, -50);
     } else if (e.key === 'd') {
-      c.translate(-50, 0)
-      this.car.update(-50, 0);
+      // c.translate(-50, 0)
+      // this.car.update(-50, 0);
+      this.car.rotate();
     }
   }
 }
