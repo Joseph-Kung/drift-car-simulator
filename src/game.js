@@ -5,11 +5,12 @@ import Track from './track.js';
 class Game {
   constructor (canvas) {
     this.canvas = canvas;
+    this.keys = [];
     canvas.width = 800;
     canvas.height = 600;
-    this.viewportWidth = canvas.width
+    this.viewportWidth = 0
     this.viewportHeight = 0
-    this.car = new Car(100, 100, 50, 50);
+    this.car = new Car(canvas.width / 2, canvas.height / 2, this);
     this.moveCar.bind(this);
   }
   
@@ -19,15 +20,17 @@ class Game {
     this.loadListeners();
     setInterval(() => {
       this.update();
+      this.car.update();
       this.draw();
     }, 1000/60)
    
   }
 
-  draw(rad) {
+  draw() {
     const c = canvas.getContext('2d');
     const track = new Track(100, 100);
     c.fillStyle = 'white';
+    this.moveCar();
     this.car.draw();
     c.fillRect(600, 600, 50, 50);
     c.fillRect(200, -200, 50, 50);
@@ -35,36 +38,56 @@ class Game {
 
   update() {
     const c = canvas.getContext('2d');
-    c.clearRect(0, this.viewportHeight, this.viewportWidth, 600);
+    c.clearRect(0 - this.viewportWidth, 0 - this.viewportHeight, canvas.width, canvas.height);
+    c.translate(this.car.velX + this.car.accX, this.car.velY + this.car.accY);
   }
 
   loadListeners() {
-    window.addEventListener("keydown", this.moveCar.bind(this), false);
+    window.addEventListener("keydown", (e) => {
+      this.keys[e.key] = true;
+    });
+
+    window.addEventListener("keyup", (e) => {
+      this.keys[e.key] = false;
+    })
   }
 
-  moveCar(e) {
+  moveCar() {
     const c = canvas.getContext('2d');
-    if (e.key === 'w') {
-      let x = Math.cos(this.car.rad) * 17
-      let y = Math.sin(this.car.rad) * 17
-      this.viewportHeight -= y;
-      this.viewportWidth -= x;
-      c.translate(x, y)
-      this.car.update(x, y);
-    } else if (e.key === 'a') {
-      this.car.rad -= 0.12
-    } else if (e.key === 's') {
-      let x = Math.cos(this.car.rad) * 17 * - 1
-      let y = Math.sin(this.car.rad) * 17 * - 1
-      this.viewportHeight += y
-      this.viewportWidth += x
-      c.translate(x, y)
-      this.car.update(x, y);
-    } else if (e.key === 'd') {
-      this.car.rad += 0.12
+    if (this.keys['w']) {
+      let ax = Math.cos(this.car.rad) * 0.04;
+      let ay = Math.sin(this.car.rad) * 0.04;
+      console.log(ax);
+      console.log(ay);
+      this.viewportHeight += ay;
+      this.viewportWidth += ax;
+      this.car.accX = ax;
+      this.car.accY = ay;
+    } else {
+      this.car.accX = this.car.accY = 0;
     }
+
+    if (this.keys['a']) {
+      this.car.rad -= 0.05
+    } else if (this.keys['d']) {
+      this.car.rad += 0.05
+    }
+    
+    if (this.keys['s']) {
+      let ax = Math.cos(this.car.rad) * 0.005 * - 1
+      let ay = Math.sin(this.car.rad) * 0.005 * - 1
+      this.viewportHeight -= ay
+      this.viewportWidth -= ax
+      this.car.accX = ax;
+      this.car.accY = ay;
+      this.car.update(ax, ay);
+    } 
   }
 
+  moveScreen() {
+    const c = canvas.getContext('2d');
+    
+  }
 }
 
 

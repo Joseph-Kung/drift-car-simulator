@@ -1,13 +1,20 @@
+import Game from './game.js';
 class Car {
-  constructor (x, y) {
+  constructor (x, y, game) {
     this.x = x;
     this.y = y;
-    this.rad = Math.PI
+    this.rad = Math.PI / 2
+    this.velX = 0
+    this.velY = 0
+    this.accX = 0
+    this.accY = 0
+    this.game = game
   }
 
   draw() {
     const c  = canvas.getContext('2d');
-
+    c.translate(this.velX, this.velY)
+    this.update();
     if (this.rad) {
       c.save()
       c.fillStyle = 'white';
@@ -21,9 +28,17 @@ class Car {
     }
   }
 
-  update(xShift, yShift) {
-    this.x -= xShift;
-    this.y -= yShift;
+  update(x, y) {
+    const c = canvas.getContext('2d');
+
+    this.velX += this.accX;
+    this.velY += this.accY;
+    
+    this.x -= (this.velX);
+    this.y -= (this.velY);
+
+    this.game.viewportHeight += this.velY + this.accY;
+    this.game.viewportWidth += this.velX + this.accY;
   }
 }
 
