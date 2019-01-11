@@ -5,11 +5,9 @@ class Background {
   }
 
   render() {
-    this.canvas.width = 1000;
-    this.canvas.height = 700;
-    // this.obstacles.forEach(obstacle => {
-    //   obstacle.draw();
-    // })
+    this.obstacles.forEach(obstacle => {
+      obstacle.draw();
+    })
   }
 }
 

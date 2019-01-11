@@ -24,22 +24,18 @@ class Car {
 
     c.translate(this.velX, this.velY)
     this.update();
-    this.viewportHeight -= (this.velY + this.accY);
-    this.viewportWidth -= (this.velX + this.accX);
 
     c.save()
     c.translate(this.x , this.y);
     c.rotate(this.rad);
     c.drawImage(this.img, 50 * -1, 60 * -1, this.imgw * this.scale, this.imgh * this.scale)
     c.restore();
+    console.log(this.x, this.y)
   }
 
   update() {
-    const c = canvas.getContext('2d');
     this.velX += this.accX;
     this.velY += this.accY;
-    this.viewportHeight -= (this.velY + this.accY);
-    this.viewportWidth -= (this.velX + this.accX);
 
     this.x -= (this.velX);
     this.y -= (this.velY);

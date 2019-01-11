@@ -6,11 +6,6 @@ class Tree extends Obstacle {
     this.img = new Image;
     this.img.src = '../assets/tree.png';
   }
-
-  draw() {
-    const c = canvas.getContext('2d');
-    c.drawImage(this.img, this.x, this.y, this.width, this.height)
-  }
 }
 
 export default Tree;
