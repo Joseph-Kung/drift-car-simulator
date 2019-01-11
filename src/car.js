@@ -1,10 +1,10 @@
 class Car {
   constructor (x, y, game) {
     this.img = new Image()
-    this.img.src = '../assets/audi.png';
-    this.imgw = 256 //
-    this.imgh = 256 //46.3
-    this.scale = 0.5
+    this.img.src = '../assets/ken.png';
+    this.imgw = 1520
+    this.imgh = 766
+    this.scale = 0.07
     this.x = x;
     this.y = y;
     this.rad = Math.PI
@@ -28,7 +28,7 @@ class Car {
     c.save()
     c.translate(this.x , this.y);
     c.rotate(this.rad);
-    c.drawImage(this.img, 50 * -1, 60 * -1, this.imgw * this.scale, this.imgh * this.scale)
+    c.drawImage(this.img, this.imgw * this.scale / 3 * -1, this.imgh * this.scale / 2 * -1, this.imgw * this.scale, this.imgh * this.scale)
     c.restore();
     console.log(this.x, this.y)
   }
