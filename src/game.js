@@ -1,6 +1,7 @@
 import Car from './car.js';
 import Background from './background.js';
 import Track from './track.js';
+import Tree from './tree.js';
 
 class Game {
   constructor (canvas) {
@@ -19,28 +20,26 @@ class Game {
     background.render();
     this.loadListeners();
     setInterval(() => {
-      this.update();
-      this.car.update();
-      this.draw();
-    }, 1000/60)
-   
+        this.car.update();
+        this.draw();
+      }, 1000/60)
   }
 
   draw() {
     const c = canvas.getContext('2d');
-    const track = new Track(100, 100);
+    c.save();
+    c.clearRect(0, 0, 5000, 5000);
+    c.translate(-this.car.x + this.canvas.width / 2, -this.car.y + this.canvas.height / 2);
+    new Track(this.canvas.width / 3, this.canvas.height / 3);
+    new Tree(this.canvas.width/3 , this.canvas.height / 6 + 7);
     c.fillStyle = 'white';
     this.moveCar();
     this.car.draw();
-    c.fillRect(600, 600, 50, 50);
-    c.fillRect(0, 0, 50, 50);
+
+    c.fillRect(-200, -200, 100, 100);
+    c.restore();
   }
 
-  update() {
-    const c = canvas.getContext('2d');
-    c.clearRect(this.viewportWidth, this.viewportHeight, 5000, 5000);
-    c.translate(this.car.velX + this.car.accX, this.car.velY + this.car.accY);
-  }
 
   loadListeners() {
     window.addEventListener("keydown", (e) => {
@@ -72,8 +71,8 @@ class Game {
     }
     
     if (this.keys['s']) {
-      let ax = Math.cos(this.car.rad) * 0.005 * - 1
-      let ay = Math.sin(this.car.rad) * 0.005 * - 1
+      let ax = Math.cos(this.car.rad) * 0.01 * - 1
+      let ay = Math.sin(this.car.rad) * 0.01 * - 1
       this.viewportHeight -= (this.car.velY + this.car.accY);
       this.viewportWidth -= (this.car.velX + this.car.accX);
       this.car.accX = ax;

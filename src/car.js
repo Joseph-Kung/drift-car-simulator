@@ -41,7 +41,7 @@ class Car {
     this.velX += this.accX;
     this.velY += this.accY;
     this.viewportHeight -= (this.velY + this.accY);
-    this.viewportWidth -= (this.velX) + this.accX;
+    this.viewportWidth -= (this.velX + this.accX);
 
     this.x -= (this.velX);
     this.y -= (this.velY);
