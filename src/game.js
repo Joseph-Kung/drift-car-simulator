@@ -55,8 +55,8 @@ class Game {
   moveCar() {
     const c = canvas.getContext('2d');
     if (this.keys['w']) {
-      let ax = Math.cos(this.car.rad) * 0.06;
-      let ay = Math.sin(this.car.rad) * 0.06;
+      let ax = Math.cos(this.car.rad) * 0.08;
+      let ay = Math.sin(this.car.rad) * 0.08;
       this.viewportHeight -= (this.car.velY + this.car.accY);
       this.viewportWidth -= (this.car.velX + this.car.accX);
       this.car.accX = ax;
@@ -66,9 +66,9 @@ class Game {
     }
 
     if (this.keys['a']) {
-      this.car.rad -= 0.05
+      this.car.rad -= 0.03
     } else if (this.keys['d']) {
-      this.car.rad += 0.05
+      this.car.rad += 0.03
     }
     
     if (this.keys['s']) {

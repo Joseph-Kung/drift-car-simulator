@@ -1,9 +1,14 @@
 import Game from './game.js';
 class Car {
   constructor (x, y, game) {
+    this.img = new Image()
+    this.img.src = '../assets/cars/pitstop_car_5.png';
+    this.imgw = 1010 //101
+    this.imgh = 463 //46.3
+    this.scale = 0.1
     this.x = x;
     this.y = y;
-    this.rad = Math.PI / 2
+    this.rad = Math.PI
     this.velX = 0
     this.velY = 0
     this.accX = 0
@@ -14,7 +19,7 @@ class Car {
   draw() {
     const c  = canvas.getContext('2d');
 
-    const friction = 0.95;
+    const friction = 0.96;
     this.velX *= friction;
     this.velY *= friction;
 
@@ -22,17 +27,13 @@ class Car {
     this.update();
     this.viewportHeight -= (this.velY + this.accY);
     this.viewportWidth -= (this.velX + this.accX);
-    if (this.rad) {
-      c.save()
-      c.fillStyle = 'white';
-      c.translate(this.x , this.y);
-      c.rotate(this.rad);
-      c.fillRect(25 * -1,25 * -1, 50, 50)
-      c.restore();
-    } else {
-      c.fillStyle = 'white';
-      c.fillRect(this.x - 25, this.y - 25, 50, 50)
-    }
+
+    c.save()
+    c.translate(this.x , this.y);
+    c.rotate(this.rad);
+    c.drawImage(this.img, 25 * -1, 25 * -1, this.imgw * this.scale, this.imgh * this.scale)
+    c.restore();
+  
   }
 
   update() {
