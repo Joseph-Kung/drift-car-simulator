@@ -2,17 +2,23 @@ class Car {
   constructor (x, y, game) {
     this.img = new Image()
     this.img.src = '../assets/ken.png';
-    this.imgw = 1520
-    this.imgh = 766
     this.scale = 0.07
+    this.imgw = 1520 * this.scale
+    this.imgh = 766 * this.scale
     this.x = x;
     this.y = y;
-    this.rad = Math.PI
+    this.rad = 0
+    this.frontLeft = {x: this.x - this.imgw / 3, y: this.y + this.imgh / 2};
+    this.backLeft = {x: this.x + this.imgw / 3 * 2, y: this.y + this.imgh / 2};
+    this.frontRight = {x: this.x - this.imgw / 3, y: this.y - this.imgh /2};
+    this.backRight = {x: this.x + this.imgw / 3 * 2, y: this.y - this.imgh / 2};
+    this.corners = [this.frontLeft, this.frontRight, this.backLeft, this.backRight];
     this.velX = 0
     this.velY = 0
     this.accX = 0
     this.accY = 0
     this.game = game
+    console.log(this.corners)
   }
 
   draw() {
@@ -28,9 +34,9 @@ class Car {
     c.save()
     c.translate(this.x , this.y);
     c.rotate(this.rad);
-    c.drawImage(this.img, this.imgw * this.scale / 3 * -1, this.imgh * this.scale / 2 * -1, this.imgw * this.scale, this.imgh * this.scale)
+
+    c.drawImage(this.img, this.imgw / 3 * -1, this.imgh  / 2 * -1, this.imgw , this.imgh)
     c.restore();
-    console.log(this.x, this.y)
   }
 
   update() {
@@ -55,6 +61,11 @@ class Car {
 
     if (this.game.keys['a']) {
       this.rad -= 0.03
+      this.corners.forEach(corner => {
+        corner.x = corner.x * Math.cos(this.rad) - this.y * Math.sin(this.rad)
+        corner.y = corner.x * Math.sin(this.rad) + this.y * Math.cos(this.rad)
+        console.log(this.corners)
+      })
     } else if (this.game.keys['d']) {
       this.rad += 0.03
     }

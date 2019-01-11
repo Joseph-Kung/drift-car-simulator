@@ -10,7 +10,7 @@ class Game {
     this.keys = [];
     canvas.width = 1000;
     canvas.height = 700;
-    this.obstacles = [new Tree(300, 300, 100, 100), new Tree(400, 400, 100, 100)];
+    this.obstacles = [new Tree(300, 300, 100, 100), new Tree(450, 450, 100, 100)];
     this.background = new Background(this.canvas, this.obstacles);
     this.car = new Car(canvas.width / 2, canvas.height / 2, this);
   }
@@ -45,10 +45,13 @@ class Game {
   }
 
   // checkCollision() {
-  //   let car = this.car
-  //   let obstacles = this.obstacles
+  //   const car = this.car;
+  //   const obstacles = this.obstacles;
   //   for (let i = 0; i < obstacles.length; i++) {
-  //     if (car.x < obstacles[i].x )
+  //     const obj = obstacles[i]
+      
+
+  //     }
   //   }
   // }
 }
