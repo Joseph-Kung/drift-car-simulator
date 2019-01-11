@@ -1,4 +1,3 @@
-import Game from './game.js';
 class Car {
   constructor (x, y, game) {
     this.img = new Image()
@@ -33,7 +32,6 @@ class Car {
     c.rotate(this.rad);
     c.drawImage(this.img, 50 * -1, 60 * -1, this.imgw * this.scale, this.imgh * this.scale)
     c.restore();
-  
   }
 
   update() {
@@ -45,6 +43,32 @@ class Car {
 
     this.x -= (this.velX);
     this.y -= (this.velY);
+  }
+
+
+  moveCar() {
+    const c = canvas.getContext('2d');
+    if (this.game.keys['w']) {
+      let ax = Math.cos(this.rad) * 0.08;
+      let ay = Math.sin(this.rad) * 0.08;
+      this.accX = ax;
+      this.accY = ay;
+    } else {
+      this.accX = this.accY = 0;
+    }
+
+    if (this.game.keys['a']) {
+      this.rad -= 0.03
+    } else if (this.game.keys['d']) {
+      this.rad += 0.03
+    }
+
+    if (this.game.keys['s']) {
+      let ax = Math.cos(this.rad) * 0.01 * - 1
+      let ay = Math.sin(this.rad) * 0.01 * - 1
+      this.accX = ax;
+      this.accY = ay;
+    }
   }
 }
 

@@ -1,20 +1,15 @@
-class Tree {
-  constructor(x,y) {
-    this.img = new Image;
-    this.img.src = '../assets/background/tree.png';
-    this.x = x;
-    this.y = y;
+import Obstacle from './obstacle.js';
 
-    this.render();
+class Tree extends Obstacle {
+  constructor(x,y, width, height) {
+    super(x, y, width, height)
+    this.img = new Image;
+    this.img.src = '../assets/tree.png';
   }
 
-  render() {
+  draw() {
     const c = canvas.getContext('2d');
-    for (let i = 0; i < 34; i++) {
-      c.drawImage(this.img, this.x, this.y, 100, 100);
-      c.drawImage(this.img, this.x, this.y + 285, 100, 100);
-      this.x += 75
-    }
+    c.drawImage(this.img, this.x, this.y, this.width, this.height)
   }
 }
 

@@ -1,11 +1,15 @@
 class Background {
-  constructor(canvas) {
+  constructor(canvas, obstacles) {
     this.canvas = canvas;
+    this.obstacles = obstacles;
   }
 
   render() {
-    this.canvas.width = 800;
-    this.canvas.height = 600;
+    this.canvas.width = 1000;
+    this.canvas.height = 700;
+    // this.obstacles.forEach(obstacle => {
+    //   obstacle.draw();
+    // })
   }
 }
 
