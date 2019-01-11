@@ -2,6 +2,7 @@ import Car from './car.js';
 import Background from './background.js';
 import Track from './track.js';
 import Tree from './tree.js';
+import Corner from './corner.js';
 
 class Game {
   constructor (canvas) {
@@ -9,8 +10,6 @@ class Game {
     this.keys = [];
     canvas.width = 800;
     canvas.height = 600;
-    this.viewportWidth = 0
-    this.viewportHeight = 0
     this.car = new Car(canvas.width / 2, canvas.height / 2, this);
     this.moveCar.bind(this);
   }
@@ -19,19 +18,19 @@ class Game {
     const background = new Background(this.canvas)
     background.render();
     this.loadListeners();
-    setInterval(() => {
-        this.car.update();
-        this.draw();
-      }, 1000/60)
+    this.car.update();
+    this.draw();
+    requestAnimationFrame(this.run.bind(this))
   }
 
   draw() {
     const c = canvas.getContext('2d');
     c.save();
-    c.clearRect(0, 0, 5000, 5000);
+    c.clearRect(0, 0, this.canvas.width, this.canvas.height);
     c.translate(-this.car.x + this.canvas.width / 2, -this.car.y + this.canvas.height / 2);
-    new Track(this.canvas.width / 3, this.canvas.height / 3);
-    new Tree(this.canvas.width/3 , this.canvas.height / 6 + 7);
+    new Track(this.canvas.width / 3, this.canvas.height / 3,);
+    // new Tree(this.canvas.width/3 , this.canvas.height / 6 + 7);
+    new Corner(300, 300, 300, 'left')
     c.fillStyle = 'white';
     this.moveCar();
     this.car.draw();
@@ -56,8 +55,6 @@ class Game {
     if (this.keys['w']) {
       let ax = Math.cos(this.car.rad) * 0.08;
       let ay = Math.sin(this.car.rad) * 0.08;
-      this.viewportHeight -= (this.car.velY + this.car.accY);
-      this.viewportWidth -= (this.car.velX + this.car.accX);
       this.car.accX = ax;
       this.car.accY = ay;
     } else {
@@ -73,8 +70,6 @@ class Game {
     if (this.keys['s']) {
       let ax = Math.cos(this.car.rad) * 0.01 * - 1
       let ay = Math.sin(this.car.rad) * 0.01 * - 1
-      this.viewportHeight -= (this.car.velY + this.car.accY);
-      this.viewportWidth -= (this.car.velX + this.car.accX);
       this.car.accX = ax;
       this.car.accY = ay;
     } 

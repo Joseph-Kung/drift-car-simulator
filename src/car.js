@@ -2,10 +2,10 @@ import Game from './game.js';
 class Car {
   constructor (x, y, game) {
     this.img = new Image()
-    this.img.src = '../assets/cars/pitstop_car_5.png';
-    this.imgw = 1010 //101
-    this.imgh = 463 //46.3
-    this.scale = 0.1
+    this.img.src = '../assets/audi.png';
+    this.imgw = 256 //
+    this.imgh = 256 //46.3
+    this.scale = 0.5
     this.x = x;
     this.y = y;
     this.rad = Math.PI
@@ -31,7 +31,7 @@ class Car {
     c.save()
     c.translate(this.x , this.y);
     c.rotate(this.rad);
-    c.drawImage(this.img, 25 * -1, 25 * -1, this.imgw * this.scale, this.imgh * this.scale)
+    c.drawImage(this.img, 50 * -1, 60 * -1, this.imgw * this.scale, this.imgh * this.scale)
     c.restore();
   
   }

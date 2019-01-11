@@ -10,7 +10,7 @@ class Tree {
 
   render() {
     const c = canvas.getContext('2d');
-    for (let i = 0; i < 67; i++) {
+    for (let i = 0; i < 34; i++) {
       c.drawImage(this.img, this.x, this.y, 100, 100);
       c.drawImage(this.img, this.x, this.y + 285, 100, 100);
       this.x += 75
