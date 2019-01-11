@@ -55,19 +55,30 @@ class Car {
       let ay = Math.sin(this.rad) * 0.08;
       this.accX = ax;
       this.accY = ay;
+
+      const newCorners = this.corners.map(corner => {
+        return this.turnCorners(corner.x, corner.y)
+      })
     } else {
       this.accX = this.accY = 0;
     }
 
     if (this.game.keys['a']) {
       this.rad -= 0.03
-      this.corners.forEach(corner => {
-        corner.x = corner.x * Math.cos(this.rad) - this.y * Math.sin(this.rad)
-        corner.y = corner.x * Math.sin(this.rad) + this.y * Math.cos(this.rad)
-        console.log(this.corners)
+      const newCorners = this.corners.map(corner => {
+        return this.turnCorners(corner.x, corner.y)
       })
+
+      this.corners = newCorners;
+      console.log(this.corners)
     } else if (this.game.keys['d']) {
       this.rad += 0.03
+      const newCorners = this.corners.map(corner => {
+        return this.turnCorners(corner.x, corner.y)
+      })
+
+      this.corners = newCorners;
+      console.log(this.corners)
     }
 
     if (this.game.keys['s']) {
@@ -76,6 +87,20 @@ class Car {
       this.accX = ax;
       this.accY = ay;
     }
+  }
+
+  turnCorners(x,y) {
+    let tempX = x - this.x
+    let tempY = y - this.y
+
+    let rotatedX = tempX * Math.cos(this.rad) - tempY * Math.sin(this.rad);
+    let rotatedY = tempX * Math.sin(this.rad) + tempY * Math.cos(this.rad);
+
+    return {x: rotatedX + this.x, y: rotatedY + this.y}
+  }
+
+  moveCorners(x, y) {
+    
   }
 }
 
