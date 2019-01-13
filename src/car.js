@@ -8,10 +8,11 @@ class Car {
     this.x = x;
     this.y = y;
     this.rad = 0;
-    this.frontLeft = {x: this.x - this.imgw / 2, y: this.y + this.imgh / 2};
-    this.backLeft = {x: this.x + this.imgw / 2, y: this.y + this.imgh / 2};
-    this.frontRight = {x: this.x - this.imgw / 2, y: this.y - this.imgh /2};
-    this.backRight = {x: this.x + this.imgw / 2, y: this.y - this.imgh / 2};
+    this.radDiff = 0;
+    this.frontLeft = {corner: 'frontLeft', x: this.x - this.imgw / 2, y: this.y + this.imgh / 2};
+    this.backLeft = {corner: 'backLeft', x: this.x + this.imgw / 2, y: this.y + this.imgh / 2};
+    this.frontRight = { corner: 'frontRight', x: this.x - this.imgw / 2, y: this.y - this.imgh /2};
+    this.backRight = {corner: 'backRight', x: this.x + this.imgw / 2, y: this.y - this.imgh / 2};
     this.corners = [this.frontLeft, this.frontRight, this.backLeft, this.backRight];
     this.velX = 0
     this.velY = 0
@@ -29,8 +30,8 @@ class Car {
     this.velY *= friction;
 
     c.translate(this.velX, this.velY)
+    
     this.update();
-
     c.save()
     c.translate(this.x , this.y);
     c.rotate(this.rad);
@@ -46,7 +47,7 @@ class Car {
     this.y -= (this.velY);
 
     const newCorners = this.corners.map(corner => {
-      return this.turnCorners(corner.x, corner.y)
+      return this.turnCorners(corner)
     })
 
     this.corners = newCorners;
@@ -66,8 +67,12 @@ class Car {
 
     if (this.game.keys['a']) {
       this.rad -= 0.03
+      this.radDiff = -0.03
     } else if (this.game.keys['d']) {
       this.rad += 0.03
+      this.radDiff = 0.03
+    } else {
+      this.radDiff = 0
     }
 
     if (this.game.keys['s']) {
@@ -78,15 +83,19 @@ class Car {
     }
   }
 
-  turnCorners(x,y) {
-    let tempX = x - this.x
-    let tempY = y - this.y
-  
-    let rotatedX = tempX * Math.cos(0.466800515) - tempY * Math.sin(0.466800515);
-    let rotatedY = tempX * Math.sin(0.466800515) + tempY * Math.cos(0.466800515);
+  turnCorners(corner) {
+    let tempX = corner.x - this.x
+    let tempY = corner.y - this.y
 
-    return {x: rotatedX + this.x, y: rotatedY + this.y}
+    let rotatedX = tempX * Math.cos(this.radDiff / 2) - tempY * Math.sin(this.radDiff / 2);
+    let rotatedY = tempX * Math.sin(this.radDiff / 2) + tempY * Math.cos(this.radDiff / 2);
+
+
+    
+    return Object.assign(corner, {x: rotatedX + this.x, y: rotatedY + this.y})
   }
 }
+
+// 0.466800515
 
 export default Car;
