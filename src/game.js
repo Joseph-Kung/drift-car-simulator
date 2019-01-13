@@ -10,7 +10,7 @@ class Game {
     this.keys = [];
     canvas.width = 1000;
     canvas.height = 700;
-    this.obstacles = [new Tree(300, 300, 100, 100)];
+    this.obstacles = [new Tree(300, 300, 100, 100), new Tree(0, 0, 100, 100)];
     this.background = new Background(this.canvas, this.obstacles);
     this.car = new Car(canvas.width / 2, canvas.height / 2, this);
   }
@@ -91,7 +91,6 @@ class Game {
             }
           }
           if (maxA < minB || maxB < minA) {
-            console.log("polygons don't intersect!");
             return false;
         }
       }
