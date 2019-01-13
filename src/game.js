@@ -1,8 +1,7 @@
 import Car from './car.js';
 import Background from './background.js';
-import Track from './track.js';
 import Tree from './tree.js';
-import Corner from './corner.js';
+import Collision from './collision.js';
 
 class Game {
   constructor (canvas) {
@@ -47,56 +46,8 @@ class Game {
 
   checkCollision(){
     for (let i = 0; i < this.obstacles.length; i++) {
-      this.isColliding(this.car.corners, this.obstacles[i].corners)
+      Collision(this.car, this.obstacles[i])
     }
-  }
-
-  isColliding(car, obj) {
-    const polygons = [car, obj]
-    let minA, maxA, minB, maxB;
-    for (let i = 0; i < polygons.length; i++) {
-
-        let polygon = polygons[i];
-        for (let i1 = 0; i1 < polygon.length; i1++) {
-
-          let i2 = (i1 + 1) % polygon.length;
-          let p1 = polygon[i1];
-          let p2 = polygon[i2];
-          
-          let normal = { x: p2.y - p1.y, y: p1.x - p2.x };
-
-           minA = undefined;
-           maxA = undefined;
-
-          for (let j = 0; j < car.length; j++) {
-            let projected = normal.x * car[j].x + normal.y * car[j].y;
-            if (minA === undefined || projected < minA) {
-              minA = projected;
-            }
-            if (maxA === undefined || projected > maxA) {
-              
-              maxA = projected;
-            }
-          }
-
-           minB = undefined;
-           maxB = undefined;
-          for (let j = 0; j < obj.length; j++) {
-            let projected = normal.x * obj[j].x + normal.y * obj[j].y;
-            if (minB === undefined || projected < minB) {
-              minB = projected;
-            }
-            if (maxB === undefined || projected > maxB) {
-              maxB = projected;
-            }
-          }
-          if (maxA < minB || maxB < minA) {
-            return false;
-        }
-      }
-    }
-    debugger
-    return true;
   }
 }
 
