@@ -46,7 +46,10 @@ class Game {
 
   checkCollision(){
     for (let i = 0; i < this.obstacles.length; i++) {
-      Collision(this.car, this.obstacles[i])
+      if (Collision(this.car, this.obstacles[i]) === true) {
+        this.car.velX *= -0.8
+        this.car.velY *= -0.8
+      }
     }
   }
 }

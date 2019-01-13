@@ -57,7 +57,6 @@ const isCollided = (rect1, rect2) => {
       return false;
     }
   }
-  debugger
   return true;
 };
 
