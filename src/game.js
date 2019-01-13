@@ -10,7 +10,7 @@ class Game {
     this.keys = [];
     canvas.width = 1000;
     canvas.height = 700;
-    this.obstacles = [new Tree(300, 300, 100, 100), new Tree(450, 450, 100, 100)];
+    this.obstacles = [new Tree(300, 300, 100, 100)];
     this.background = new Background(this.canvas, this.obstacles);
     this.car = new Car(canvas.width / 2, canvas.height / 2, this);
   }
@@ -28,6 +28,7 @@ class Game {
     c.clearRect(0, 0, this.canvas.width, this.canvas.height);
     c.translate(-this.car.x + this.canvas.width / 2, -this.car.y + this.canvas.height / 2);
     this.background.render();
+    this.checkCollision();
     this.car.moveCar();
     this.car.draw();
     c.restore();
@@ -44,15 +45,59 @@ class Game {
     })
   }
 
-  checkCollision() {
-    const car = this.car;
-    const obstacles = this.obstacles;
-    for (let i = 0; i < obstacles.length; i++) {
-      const obj = obstacles[i]
-      
+  checkCollision(){
+    for (let i = 0; i < this.obstacles.length; i++) {
+      this.isColliding(this.car.corners, this.obstacles[i].corners)
+    }
+  }
 
+  isColliding(car, obj) {
+    const polygons = [car, obj]
+    let minA, maxA, minB, maxB;
+    for (let i = 0; i < polygons.length; i++) {
+
+        let polygon = polygons[i];
+        for (let i1 = 0; i1 < polygon.length; i1++) {
+
+          let i2 = (i1 + 1) % polygon.length;
+          let p1 = polygon[i1];
+          let p2 = polygon[i2];
+          
+          let normal = { x: p2.y - p1.y, y: p1.x - p2.x };
+
+           minA = undefined;
+           maxA = undefined;
+
+          for (let j = 0; j < car.length; j++) {
+            let projected = normal.x * car[j].x + normal.y * car[j].y;
+            if (minA === undefined || projected < minA) {
+              minA = projected;
+            }
+            if (maxA === undefined || projected > maxA) {
+              
+              maxA = projected;
+            }
+          }
+
+           minB = undefined;
+           maxB = undefined;
+          for (let j = 0; j < obj.length; j++) {
+            let projected = normal.x * obj[j].x + normal.y * obj[j].y;
+            if (minB === undefined || projected < minB) {
+              minB = projected;
+            }
+            if (maxB === undefined || projected > maxB) {
+              maxB = projected;
+            }
+          }
+          if (maxA < minB || maxB < minA) {
+            console.log("polygons don't intersect!");
+            return false;
+        }
       }
     }
+    debugger
+    return true;
   }
 }
 

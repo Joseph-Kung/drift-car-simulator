@@ -52,7 +52,6 @@ class Car {
     })
 
     this.corners = newCorners;
-    console.log(this.corners)
   }
 
 
