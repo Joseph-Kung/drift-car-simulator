@@ -7,12 +7,13 @@ class Car {
     this.imgh = 766 * this.scale
     this.x = x;
     this.y = y;
-    this.rad = 0
+    this.rad = 0;
     this.frontLeft = {x: this.x - this.imgw / 3, y: this.y + this.imgh / 2};
     this.backLeft = {x: this.x + this.imgw / 3 * 2, y: this.y + this.imgh / 2};
     this.frontRight = {x: this.x - this.imgw / 3, y: this.y - this.imgh /2};
     this.backRight = {x: this.x + this.imgw / 3 * 2, y: this.y - this.imgh / 2};
     this.corners = [this.frontLeft, this.frontRight, this.backLeft, this.backRight];
+    this.prev = []
     this.velX = 0
     this.velY = 0
     this.accX = 0
@@ -42,9 +43,16 @@ class Car {
   update() {
     this.velX += this.accX;
     this.velY += this.accY;
-
+    this.prev = [this.x, this.y]
     this.x -= (this.velX);
     this.y -= (this.velY);
+
+    const newCorners = this.corners.map(corner => {
+      return this.turnCorners(corner.x, corner.y)
+    })
+
+    this.corners = newCorners;
+    console.log(this.corners)
   }
 
 
@@ -56,29 +64,14 @@ class Car {
       this.accX = ax;
       this.accY = ay;
 
-      const newCorners = this.corners.map(corner => {
-        return this.turnCorners(corner.x, corner.y)
-      })
     } else {
       this.accX = this.accY = 0;
     }
 
     if (this.game.keys['a']) {
       this.rad -= 0.03
-      const newCorners = this.corners.map(corner => {
-        return this.turnCorners(corner.x, corner.y)
-      })
-
-      this.corners = newCorners;
-      console.log(this.corners)
     } else if (this.game.keys['d']) {
       this.rad += 0.03
-      const newCorners = this.corners.map(corner => {
-        return this.turnCorners(corner.x, corner.y)
-      })
-
-      this.corners = newCorners;
-      console.log(this.corners)
     }
 
     if (this.game.keys['s']) {
@@ -100,7 +93,7 @@ class Car {
   }
 
   moveCorners(x, y) {
-    
+
   }
 }
 
