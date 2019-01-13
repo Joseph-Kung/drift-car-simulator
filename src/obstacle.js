@@ -4,10 +4,10 @@ class Obstacle {
     this.y = y;
     this.width = width;
     this.height = height;
-    this.topLeft = {x: this.x - this.width / 2, y: this.y - this.height / 2}
-    this.botLeft = {x: this.x - this.width / 2, y: this.y + this.height / 2}
-    this.topRight = {x: this.x + this.width / 2, y: this.y - this.height / 2}
-    this.botRight = {x: this.x + this.width / 2, y: this.y + this.height / 2}
+    this.topLeft = {x: this.x - (this.width / 2) + 15, y: this.y - (this.height / 2) + 15}
+    this.botLeft = {x: this.x - (this.width / 2) + 15, y: this.y + (this.height / 2) - 15}
+    this.topRight = {x: this.x + (this.width / 2) - 15, y: this.y - (this.height / 2) + 15}
+    this.botRight = {x: this.x + (this.width / 2) - 15, y: this.y + (this.height / 2) - 15}
     this.corners = [this.topLeft, this.topRight, this.botLeft, this.botRight]
   }
 
