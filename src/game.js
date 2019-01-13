@@ -44,16 +44,16 @@ class Game {
     })
   }
 
-  // checkCollision() {
-  //   const car = this.car;
-  //   const obstacles = this.obstacles;
-  //   for (let i = 0; i < obstacles.length; i++) {
-  //     const obj = obstacles[i]
+  checkCollision() {
+    const car = this.car;
+    const obstacles = this.obstacles;
+    for (let i = 0; i < obstacles.length; i++) {
+      const obj = obstacles[i]
       
 
-  //     }
-  //   }
-  // }
+      }
+    }
+  }
 }
 
 
