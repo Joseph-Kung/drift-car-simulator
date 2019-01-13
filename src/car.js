@@ -14,6 +14,7 @@ class Car {
     this.frontRight = { corner: 'frontRight', x: this.x - this.imgw / 2, y: this.y - this.imgh /2};
     this.backRight = {corner: 'backRight', x: this.x + this.imgw / 2, y: this.y - this.imgh / 2};
     this.corners = [this.frontLeft, this.frontRight, this.backLeft, this.backRight];
+    this.prev = []
     this.velX = 0
     this.velY = 0
     this.accX = 0
@@ -43,9 +44,11 @@ class Car {
   update() {
     this.velX += this.accX;
     this.velY += this.accY;
+    this.prev = [this.x, this.y]
     this.x -= (this.velX);
     this.y -= (this.velY);
 
+    this.movePoints()
     const newCorners = this.corners.map(corner => {
       return this.turnCorners(corner)
     })
@@ -93,6 +96,17 @@ class Car {
 
     
     return Object.assign(corner, {x: rotatedX + this.x, y: rotatedY + this.y})
+  }
+
+  movePoints() {
+    if (this.prev) {
+      let diffX = this.x - this.prev[0];
+      let diffY = this.y - this.prev[1];
+      this.corners.forEach(corner => {
+        corner['x'] += diffX;
+        corner['y'] += diffY; 
+      })
+    }
   }
 }
 
