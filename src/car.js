@@ -54,7 +54,6 @@ class Car {
     })
 
     this.corners = newCorners;
-    console.log(this.corners);
   }
 
 
@@ -104,7 +103,7 @@ class Car {
       let diffY = this.y - this.prev[1];
       this.corners.forEach(corner => {
         corner['x'] += diffX;
-        corner['y'] += diffY; 
+        corner['y'] += diffY;
       })
     }
   }

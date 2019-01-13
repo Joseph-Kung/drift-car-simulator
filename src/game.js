@@ -12,6 +12,7 @@ class Game {
     this.obstacles = [new Tree(300, 300, 100, 100), new Tree(0, 0, 100, 100)];
     this.background = new Background(this.canvas, this.obstacles);
     this.car = new Car(canvas.width / 2, canvas.height / 2, this);
+    this.points = 0
   }
   
   run () {
@@ -28,9 +29,17 @@ class Game {
     c.translate(-this.car.x + this.canvas.width / 2, -this.car.y + this.canvas.height / 2);
     this.background.render();
     this.checkCollision();
+    this.givePoints();
     this.car.moveCar();
     this.car.draw();
     c.restore();
+    console.log(this.points);
+  }
+
+  givePoints() {
+    if ((Math.abs(this.car.velX) >= 1.5 || Math.abs(this.car.velY) >= 1.5) && Math.abs(this.car.radDiff) === 0.03 ) {
+      this.points += 1;
+    }
   }
 
 
@@ -47,8 +56,13 @@ class Game {
   checkCollision(){
     for (let i = 0; i < this.obstacles.length; i++) {
       if (Collision(this.car, this.obstacles[i]) === true) {
-        this.car.velX *= -0.8
-        this.car.velY *= -0.8
+        this.car.velX *= -0.7
+        this.car.velY *= -0.7
+
+        this.points -= 20
+        if (this.points < 0) {
+          this.points = 0
+        }
       }
     }
   }
