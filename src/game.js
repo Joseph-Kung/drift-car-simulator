@@ -15,8 +15,10 @@ class Game {
     this.obstacles = [new Tree(300, 300, 100, 100), new Tree(0, 0, 100, 100), new Boulder(500, 500, 100, 100), new Tire(400, 400, 100, 100), new Cone(600, 600, 100, 100)];
     this.background = new Background(this.canvas, this.obstacles);
     this.car = new Car(canvas.width / 2, canvas.height / 2, this);
-    this.points = 0
-    this.time = Date.now();
+    this.points = 0;
+    this.seconds = 60;
+    this.milliseconds = 100;
+    this.startTimer();
   }
   
   run () {
@@ -41,8 +43,9 @@ class Game {
   }
 
   drawUI() {
-    document.getElementById('score').innerHTML = `Score: ${this.points}`
-  }
+    document.getElementById('score').innerHTML = `Score: ${this.points}`;
+    document.getElementById('time').innerHTML = `Time Remaining: ${this.seconds}:${('0' + this.milliseconds).slice(-2)}`;
+  } 
 
   givePoints() {
     if ((Math.abs(this.car.velX) >= 1.5 || Math.abs(this.car.velY) >= 1.5) && Math.abs(this.car.radDiff) === 0.03 ) {
@@ -73,6 +76,22 @@ class Game {
         }
       }
     }
+  }
+
+  startTimer() {
+    setInterval(() => {
+      this.milliseconds -= 1
+      if (this.milliseconds === -1) {
+        debugger
+        this.milliseconds = 99
+      }
+    }, 10)
+
+
+
+    setInterval(() => {
+      this.seconds -= 1
+    }, 1000)
   }
 }
 
