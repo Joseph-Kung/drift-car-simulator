@@ -9,7 +9,7 @@ class Track {
 
   render() {
     const c = canvas.getContext('2d');
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 15; i++) {
       c.drawImage(this.img, this.x, this.y, 300, 300)
       this.x += 300;
     }
