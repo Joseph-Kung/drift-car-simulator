@@ -16,9 +16,24 @@ class Game {
     this.background = new Background(this.canvas, this.obstacles);
     this.car = new Car(canvas.width / 2, canvas.height / 2, this);
     this.points = 0;
-    this.seconds = 60;
-    this.milliseconds = 100;
-    this.startTimer();
+    this.over = false;
+
+
+    this.seconds = 59;
+    this.milliseconds = 99;
+    this.millisecondsTimer = setInterval(() => {
+      this.milliseconds -= 1
+      if (this.milliseconds === -1) {
+        this.milliseconds = 99
+      }
+    }, 10)
+
+    this.secondsTimer = setInterval(() => {
+      this.seconds -= 1
+      if (this.seconds === 0) {
+        this.gameOver();
+      }
+    }, 1000)
   }
   
   run () {
@@ -44,7 +59,7 @@ class Game {
 
   drawUI() {
     document.getElementById('score').innerHTML = `Score: ${this.points}`;
-    document.getElementById('time').innerHTML = `Time Remaining: ${this.seconds}:${('0' + this.milliseconds).slice(-2)}`;
+    document.getElementById('time').innerHTML = `Time Remaining: ${('0' + this.seconds).slice(-2)}:${('0' + this.milliseconds).slice(-2)}s`;
   } 
 
   givePoints() {
@@ -55,13 +70,9 @@ class Game {
 
 
   loadListeners() {
-    window.addEventListener("keydown", (e) => {
-      this.keys[e.key] = true;
-    });
+    window.addEventListener("keydown", this.handleKeyDown.bind(this));
 
-    window.addEventListener("keyup", (e) => {
-      this.keys[e.key] = false;
-    })
+    window.addEventListener("keyup", this.handleKeyUp.bind(this))
   }
 
   checkCollision(){
@@ -78,20 +89,20 @@ class Game {
     }
   }
 
-  startTimer() {
-    setInterval(() => {
-      this.milliseconds -= 1
-      if (this.milliseconds === -1) {
-        debugger
-        this.milliseconds = 99
-      }
-    }, 10)
+  handleKeyUp(e) {
+    this.keys[e.key] = false;
+  }
 
+  handleKeyDown(e) {
+    this.keys[e.key] = true;
+  }
 
-
-    setInterval(() => {
-      this.seconds -= 1
-    }, 1000)
+  gameOver() {
+    this.seconds = 0
+    this.milliseconds = 0
+    clearInterval(this.millisecondsTimer);
+    clearInterval(this.secondsTimer);
+    this.over = true;
   }
 }
 
