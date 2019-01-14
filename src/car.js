@@ -20,7 +20,6 @@ class Car {
     this.accX = 0
     this.accY = 0
     this.game = game
-    console.log(this.corners);
   }
 
   draw() {
