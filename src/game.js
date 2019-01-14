@@ -18,8 +18,7 @@ class Game {
     this.points = 0;
     this.gameDone = false
 
-
-    this.seconds = 3;
+    this.seconds = 59;
     this.milliseconds = 99;
     this.millisecondsTimer;
     this.secondsTimer;
@@ -71,7 +70,7 @@ class Game {
         this.car.velX *= -0.75
         this.car.velY *= -0.75
 
-        this.points -= 10
+        this.points -= 20
         if (this.points < 0) {
           this.points = 0
         }

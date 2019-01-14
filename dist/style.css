@@ -1,14 +1,20 @@
-canvas {
+.container {
   position: relative;
+  width: 1000px;
+  height: 700px;
+}
+canvas {
   border: 1px solid black;
-  background: lightgreen;
+  background: grey;
 }
 
 #ui {
   position: absolute;
+  color: white;
+  font-size: 20px;
   z-index: 1;
-  top: 10px;
-  right: 0;
+  top: 15px;
+  right: -20px;
   width: 400px;
   display: flex;
   justify-content: space-around;

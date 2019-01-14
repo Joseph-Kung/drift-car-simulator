@@ -2,17 +2,16 @@ class Track {
   constructor(x, y) {
     this.x = x
     this.y = y
-
+    this.img = new Image;
+    this.img.src = '../assets/road.png';
     this.render();
   }
 
   render() {
     const c = canvas.getContext('2d');
-    c.fillStyle = 'gray';
-
     for (let i = 0; i < 25; i++) {
-      c.fillRect(this.x, this.y, 100, 200);
-      this.x += 100;
+      c.drawImage(this.img, this.x, this.y, 300, 300)
+      this.x += 300;
     }
   }
 }
