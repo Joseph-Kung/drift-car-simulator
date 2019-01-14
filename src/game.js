@@ -21,19 +21,8 @@ class Game {
 
     this.seconds = 3;
     this.milliseconds = 99;
-    this.millisecondsTimer = setInterval(() => {
-      this.milliseconds -= 1
-      if (this.milliseconds === -1) {
-        this.milliseconds = 99
-      }
-    }, 10)
-
-    this.secondsTimer = setInterval(() => {
-      this.seconds -= 1
-      if (this.seconds === 0) {
-        this.gameOver();
-      }
-    }, 1000)
+    this.millisecondsTimer;
+    this.secondsTimer;
   }
   
   run () {
@@ -73,7 +62,6 @@ class Game {
 
   loadListeners() {
     window.addEventListener("keydown", this.handleKeyDown.bind(this));
-
     window.addEventListener("keyup", this.handleKeyUp.bind(this))
   }
 
@@ -99,6 +87,22 @@ class Game {
     this.keys[e.key] = true;
   }
 
+  setTimers() {
+    this.millisecondsTimer = setInterval(() => {
+      this.milliseconds -= 1
+      if (this.milliseconds === -1) {
+        this.milliseconds = 99
+      }
+    }, 10)
+
+    this.secondsTimer = setInterval(() => {
+      this.seconds -= 1
+      if (this.seconds === 0) {
+        this.gameOver();
+      }
+    }, 1000)
+  }
+
   gameOver() {
     this.seconds = 0
     this.milliseconds = 0
@@ -111,7 +115,7 @@ class Game {
     this.draw();
     document.getElementById('description').innerHTML = `Good job! You had a final score of ${this.points}`;
     document.getElementById('play').innerHTML = 'Play again'
-    document.getElementById('welcome').hidden = false
+    document.getElementById('welcome').style.display = 'flex'
   }
 }
 

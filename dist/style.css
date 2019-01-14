@@ -1,6 +1,17 @@
 canvas {
+  position: relative;
   border: 1px solid black;
   background: lightgreen;
+}
+
+#ui {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 0;
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
 }
 
 #play {
@@ -11,6 +22,7 @@ canvas {
   background-color: rgba(255, 255, 0, 0.795);
   color: white;
   text-shadow: 2px 2px black;
+  margin-bottom: 20px;
 }
 
 #play:hover, #play-again:hover {
@@ -25,4 +37,29 @@ canvas {
   background-color: rgba(255, 255, 0, 0.795);
   color: white;
   text-shadow: 2px 2px black;
+}
+
+#welcome {
+  position: absolute;
+  background-color: white;
+  width: 500px;
+  left: 250px;
+  top: 250px;
+  z-index: 1;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#title {
+  padding: 10px 0;
+  font-size: 40px;
+}
+
+#description {
+  padding: 10px 10px;
+  line-height: 20px;
 }
