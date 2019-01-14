@@ -16,10 +16,10 @@ class Game {
     this.background = new Background(this.canvas, this.obstacles);
     this.car = new Car(canvas.width / 2, canvas.height / 2, this);
     this.points = 0;
-    this.over = false;
+    this.gameDone = false
 
 
-    this.seconds = 59;
+    this.seconds = 3;
     this.milliseconds = 99;
     this.millisecondsTimer = setInterval(() => {
       this.milliseconds -= 1
@@ -37,10 +37,12 @@ class Game {
   }
   
   run () {
-    this.loadListeners();
-    this.car.update();
-    this.draw();
-    requestAnimationFrame(this.run.bind(this))
+    if (this.gameDone === false) {
+      this.loadListeners();
+      this.car.update();
+      this.draw();
+      requestAnimationFrame(this.run.bind(this))
+    }
   }
 
   draw() {
@@ -100,9 +102,16 @@ class Game {
   gameOver() {
     this.seconds = 0
     this.milliseconds = 0
+
     clearInterval(this.millisecondsTimer);
     clearInterval(this.secondsTimer);
-    this.over = true;
+    window.removeEventListener("keydown", this.handleKeyDown.bind(this));
+    window.removeEventListener("keyup", this.handleKeyUp.bind(this))
+    this.gameDone = true
+    this.draw();
+    document.getElementById('description').innerHTML = `Good job! You had a final score of ${this.points}`;
+    document.getElementById('play').innerHTML = 'Play again'
+    document.getElementById('welcome').hidden = false
   }
 }
 

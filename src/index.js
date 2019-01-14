@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('play').addEventListener('click', (e) => {
     document.getElementById('welcome').hidden = true;
+    if (game.gameDone === true) {
+      game = new Game(canvas)
+    }
     game.run();
   })
 })
