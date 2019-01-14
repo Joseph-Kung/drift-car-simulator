@@ -59,8 +59,8 @@ class Car {
 
   moveCar() {
     if (this.game.keys['w']) {
-      let ax = Math.cos(this.rad) * 0.08;
-      let ay = Math.sin(this.rad) * 0.08;
+      let ax = Math.cos(this.rad) * 0.1;
+      let ay = Math.sin(this.rad) * 0.1;
       this.accX = ax;
       this.accY = ay;
     } else {
@@ -108,7 +108,5 @@ class Car {
     }
   }
 }
-
-// 0.466800515
 
 export default Car;
