@@ -101,6 +101,4 @@ const isCollided = (rect1, rect2) => {
   return true;
 };
 ```
-
-
 For more information about Separating Axis Theorem click [here](https://www.gamedev.net/articles/programming/general-and-gameplay-programming/2d-rotated-rectangle-collision-r2604)
