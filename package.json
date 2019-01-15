@@ -1,7 +1,7 @@
 {
   "name": "time-attack-racer",
   "version": "1.0.0",
-  "description": "Time Attack Racer is a top down 2D racing game. Players will be able to select different tracks and compete for the best time on the leaderboards.",
+  "description": "Drift Car Simulator is a top down driving game. The objective of the game is to drift as fast as possible while avoiding the obstacles on the abandoned airfield. You score points as you drift and you have a minute to rack up as many points as possible.",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

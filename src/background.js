@@ -9,7 +9,7 @@ class Background {
     this.game = game;
     this.obstacles = obstacles;
     this.img = new Image;
-    this.img.src = '../assets/track.png';
+    this.img.src = './assets/track.png';
   }
 
   render() {

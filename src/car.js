@@ -1,7 +1,7 @@
 class Car {
   constructor (x, y, game) {
     this.img = new Image()
-    this.img.src = '../assets/ken.png';
+    this.img.src = './assets/ken.png';
     this.scale = 0.07
     this.imgw = 1520 * this.scale
     this.imgh = 766 * this.scale

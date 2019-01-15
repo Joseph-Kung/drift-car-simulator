@@ -3,7 +3,7 @@ class Track {
     this.x = x
     this.y = y
     this.img = new Image;
-    this.img.src = '../assets/road.png';
+    this.img.src = './assets/road.png';
     this.render();
   }
 
