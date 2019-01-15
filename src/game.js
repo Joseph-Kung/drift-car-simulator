@@ -5,7 +5,6 @@ import Collision from './collision.js';
 import Boulder from './boulder.js';
 import Tire from './tire.js';
 import Cone from './cone.js';
-import Barrier from './barrier.js';
 
 class Game {
   constructor (canvas) {
@@ -13,9 +12,9 @@ class Game {
     this.keys = [];
     canvas.width = 1000;
     canvas.height = 700;
-    this.obstacles = [new Barrier(-625, 375, 300, 2500), new Tree(300, 300, 100, 100), new Boulder(500, 500, 100, 100), new Tire(400, 400, 100, 100), new Cone(600, 600, 100, 100)];
-    this.background = new Background(this.canvas, this.obstacles);
-    this.car = new Car(canvas.width / 2, canvas.height / 2, this);
+    this.obstacles = [];
+    this.background = new Background(this.canvas, this.obstacles, this);
+    this.car = new Car(1300, 1637 / 2, this);
     this.points = 0;
     this.gameDone = false
 
@@ -68,8 +67,8 @@ class Game {
   checkCollision(){
     for (let i = 0; i < this.obstacles.length; i++) {
       if (Collision(this.car, this.obstacles[i]) === true) {
-        this.car.velX *= -0.75
-        this.car.velY *= -0.75
+        this.car.velX *= -0.85
+        this.car.velY *= -0.85
 
         this.points -= 20
         if (this.points < 0) {

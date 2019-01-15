@@ -24,7 +24,6 @@ class Car {
 
   draw() {
     const c  = canvas.getContext('2d');
-
     const friction = 0.96;
     this.velX *= friction;
     this.velY *= friction;
