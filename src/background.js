@@ -15,13 +15,14 @@ class Background {
   render() {
     const c = canvas.getContext('2d');
     c.drawImage(this.img, -500, -500, 3101, 3774)
-    this.obstacles.push(new Barrier(-750, 1300, 500, 4300));
-    this.obstacles.push(new Barrier(1050, -750, 3400, 500));
-    this.obstacles.push(new Barrier(2851, 1300, 500, 4300));
-    this.obstacles.push(new Barrier(1050, 3524, 3400, 500));
+
     const obj = ['tree', 'cone', 'tire'];
     if (this.obstacles.length < 100) {
       let random;
+      this.obstacles.push(new Barrier(-750, 1300, 500, 4300));
+      this.obstacles.push(new Barrier(1050, -750, 3400, 500));
+      this.obstacles.push(new Barrier(2851, 1300, 500, 4300));
+      this.obstacles.push(new Barrier(1050, 3524, 3400, 500));
       for (let i = 0; i < 30; i++) {
         random = Math.floor(Math.random() * 3);
         if (obj[random] === 'tree') {
