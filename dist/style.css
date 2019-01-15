@@ -2,6 +2,14 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+#background {
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-image: url('../assets/background.jpg');
+  background-size: cover;
+}
+
 .container {
   position: absolute;
   display: flex;
@@ -54,11 +62,9 @@ canvas {
 }
 
 #welcome {
-  /* position: absolute; */
+  border-radius: 10px;
   background-color: white;
   width: 500px;
-  left: 250px;
-  top: 250px;
   z-index: 1;
   border: 1px solid black;
   display: flex;
@@ -66,6 +72,7 @@ canvas {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin-bottom: 300px;
 }
 
 #title {

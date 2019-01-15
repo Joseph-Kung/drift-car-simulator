@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (game.gameDone === true) {
       game = new Game(canvas)
     }
+    document.getElementById('background').style.display = 'none';
     game.setTimers();
     game.run();
   })

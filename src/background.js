@@ -1,7 +1,7 @@
 import Barrier from './barrier.js';
 import Tire from './tire.js';
 import Cone from './cone.js';
-import Tree from './tree.js';
+import Boulder from './boulder.js';
 
 class Background {
   constructor(canvas, obstacles, game) {
@@ -26,9 +26,9 @@ class Background {
       for (let i = 0; i < 30; i++) {
         random = Math.floor(Math.random() * 3);
         if (obj[random] === 'tree') {
-          this.obstacles.push(new Tree(this.randomInt(0, 2500), this.randomInt(0, 3100), 100, 100))
+          this.obstacles.push(new Boulder(this.randomInt(0, 2500), this.randomInt(0, 3100), 60, 60))
         } else if (obj[random] === 'cone') {
-          this.obstacles.push(new Cone(this.randomInt(0, 2500), this.randomInt(0, 3100), 50, 50))
+          this.obstacles.push(new Cone(this.randomInt(0, 2500), this.randomInt(0, 3100), 22, 22))
         } else {
           this.obstacles.push(new Tire(this.randomInt(0, 2500), this.randomInt(0, 3100), 50, 50))
         }
