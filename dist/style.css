@@ -1,5 +1,5 @@
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'PT Sans', sans-serif;
 }
 
 #background {
@@ -11,6 +11,7 @@ body {
 }
 
 .container {
+  font-family: 'PT Sans', sans-serif;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -38,12 +39,12 @@ canvas {
 
 #play {
   text-align: center;
+  border-radius: 10px;
   width: 100px;
   padding: 10px 50px;
-  border: 1px solid black;
-  background-color: rgba(255, 255, 0, 0.795);
+  margin-top: 10px;
+  background-color: #36465d;
   color: white;
-  text-shadow: 2px 2px black;
   margin-bottom: 20px;
 }
 
@@ -53,12 +54,12 @@ canvas {
 
 #play-again {
   text-align: center;
+  border-radius: 10px;
   width: 100px;
   padding: 10px 50px;
-  border: 1px solid black;
-  background-color: rgba(255, 255, 0, 0.795);
+  margin-top: 10px;
+  background-color: #36465d;
   color: white;
-  text-shadow: 2px 2px black;
 }
 
 #welcome {
@@ -66,7 +67,7 @@ canvas {
   background-color: white;
   width: 500px;
   z-index: 1;
-  border: 1px solid black;
+  padding: 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
