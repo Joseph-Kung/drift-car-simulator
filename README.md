@@ -45,13 +45,13 @@ Using matrix rotation, I was able to calculate the new corners of the car after 
 <br>
 With the corners of the objects, The coordinates are projected on to four perpendicular axes.
 <br>
-<img src="./assets/readme/four-axis.png" align="center" />
+<img height="400px" width="378px" src="./assets/readme/four-axis.png" align="center" />
 <br>
 
 We want to then project all corners of the two objects onto each axis. If we see that the minimum value of one object is less than or equal to the maximum value of another object, and vice versa on all four axes, we know that the two objects are colliding.
 
 <br>
-<img src="./assets/readme/min-max.png" align="center" />
+<img height="400px" width="378px" src="./assets/readme/min-max.png" align="center" />
 <br>
 <br>
 
@@ -106,3 +106,5 @@ const isCollided = (rect1, rect2) => {
   return true;
 };
 ```
+<br>
+For more information about Separating Axis Theorem click [here](https://www.gamedev.net/articles/programming/general-and-gameplay-programming/2d-rotated-rectangle-collision-r2604)
