@@ -6,8 +6,8 @@ class Game {
   constructor (canvas) {
     this.canvas = canvas;
     this.keys = [];
-    canvas.width = 1000;
-    canvas.height = 700;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     this.obstacles = [];
     this.background = new Background(this.canvas, this.obstacles, this);
     this.car = new Car(-150, -150 / 2, this);
