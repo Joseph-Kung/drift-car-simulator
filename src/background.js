@@ -23,11 +23,11 @@ class Background {
     if (this.obstacles.length < 100) {
       for (let i = 0; i < 100; i++) {
         if (obj[Math.floor(Math.random() * 3)] === 'tree') {
-          this.obstacles.push(new Tree(this.randomInt(-300, 2500), this.randomInt(-300, 3000), 100, 100))
+          this.obstacles.push(new Tree(this.randomInt(-100, 2500), this.randomInt(-500, 3000), 100, 100))
         } else if (obj[Math.floor(Math.random() * 3) === 'cone']) {
-          this.obstacles.push(new Cone(this.randomInt(-300, 2500), this.randomInt(-300, 3000), 100, 100))
+          this.obstacles.push(new Cone(this.randomInt(-100, 2500), this.randomInt(-500, 3000), 100, 100))
         } else {
-          this.obstacles.push(new Tire(this.randomInt(-300, 2500), this.randomInt(-300, 3000), 100, 100))
+          this.obstacles.push(new Tire(this.randomInt(-100, 2500), this.randomInt(-500, 3000), 100, 100))
         }
       }
     }
@@ -38,10 +38,7 @@ class Background {
   }
 
   randomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 }
 

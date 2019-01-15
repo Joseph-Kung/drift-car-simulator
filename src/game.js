@@ -1,10 +1,6 @@
 import Car from './car.js';
 import Background from './background.js';
-import Tree from './tree.js';
 import Collision from './collision.js';
-import Boulder from './boulder.js';
-import Tire from './tire.js';
-import Cone from './cone.js';
 
 class Game {
   constructor (canvas) {
@@ -14,7 +10,7 @@ class Game {
     canvas.height = 700;
     this.obstacles = [];
     this.background = new Background(this.canvas, this.obstacles, this);
-    this.car = new Car(1300, 1637 / 2, this);
+    this.car = new Car(-150, -150 / 2, this);
     this.points = 0;
     this.gameDone = false
 

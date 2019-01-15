@@ -7,7 +7,7 @@ class Car {
     this.imgh = 766 * this.scale
     this.x = x;
     this.y = y;
-    this.rad = 0;
+    this.rad = Math.PI;
     this.radDiff = 0;
     this.frontLeft = {corner: 'frontLeft', x: this.x - this.imgw / 2, y: this.y + this.imgh / 2};
     this.backLeft = {corner: 'backLeft', x: this.x + this.imgw / 2, y: this.y + this.imgh / 2};
