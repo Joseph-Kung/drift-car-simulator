@@ -21,6 +21,11 @@ The driving physics create a realistic driving experience for a 2D simulator. Ac
 <br>
 <br>
 Collision detection was a challenge due to the rotation of the car. A quick overview about this mechanic, in order to tackle this problem, I had to implement the Separating Axis Theorem. This involved keeping track of the corners of all objects including the rotating car. 
+<br>
+<br>
+<img src="./assets/readme/collision.gif" align="center" />
+<br>
+<br>
 
 ``` js
   turnCorners(corner) {
@@ -40,11 +45,14 @@ Using matrix rotation, I was able to calculate the new corners of the car after 
 <br>
 With the corners of the objects, The coordinates are projected on to four perpendicular axes.
 <br>
-![projection](https://images.gamedev.net/features/programming/2dRotatedRectCollision/fig4.png)
+<img src="./assets/readme/four-axis.png" align="center" />
 <br>
+
 We want to then project all corners of the two objects onto each axis. If we see that the minimum value of one object is less than or equal to the maximum value of another object, and vice versa on all four axes, we know that the two objects are colliding.
+
 <br>
-![projection](http://images.gamedev.net/features/programming/2dRotatedRectCollision/fig6.png)
+<img src="./assets/readme/min-max.png" align="center" />
+<br>
 <br>
 
 ``` js
