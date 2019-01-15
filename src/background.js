@@ -21,13 +21,15 @@ class Background {
     this.obstacles.push(new Barrier(1050, 3524, 3400, 500));
     const obj = ['tree', 'cone', 'tire'];
     if (this.obstacles.length < 100) {
-      for (let i = 0; i < 100; i++) {
-        if (obj[Math.floor(Math.random() * 3)] === 'tree') {
-          this.obstacles.push(new Tree(this.randomInt(-100, 2500), this.randomInt(-500, 3000), 100, 100))
-        } else if (obj[Math.floor(Math.random() * 3) === 'cone']) {
-          this.obstacles.push(new Cone(this.randomInt(-100, 2500), this.randomInt(-500, 3000), 100, 100))
+      let random;
+      for (let i = 0; i < 30; i++) {
+        random = Math.floor(Math.random() * 3);
+        if (obj[random] === 'tree') {
+          this.obstacles.push(new Tree(this.randomInt(0, 2500), this.randomInt(0, 3100), 100, 100))
+        } else if (obj[random] === 'cone') {
+          this.obstacles.push(new Cone(this.randomInt(0, 2500), this.randomInt(0, 3100), 50, 50))
         } else {
-          this.obstacles.push(new Tire(this.randomInt(-100, 2500), this.randomInt(-500, 3000), 100, 100))
+          this.obstacles.push(new Tire(this.randomInt(0, 2500), this.randomInt(0, 3100), 50, 50))
         }
       }
     }

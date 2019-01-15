@@ -88,7 +88,7 @@ class Game {
       if (this.milliseconds === -1) {
         this.milliseconds = 99
       }
-    }, 10)
+    }, 1)
 
     this.secondsTimer = setInterval(() => {
       this.seconds -= 1
